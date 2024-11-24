@@ -10,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.*;
 
 public class LoadTestMetricsService {
@@ -71,7 +69,7 @@ public class LoadTestMetricsService {
 
             // Header'ları ayarlama (örneğin, Authorization için)
             HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MWEyOTFiNzY0YThlMTEwNzlkMGYyZSIsImlhdCI6MTcyOTc2NzcwNywiZXhwIjoxNzMyMzU5NzA3fQ.ijMcqGw4OUOWG79jrXhmkAwGolVJUjNXp6Y15y-OY7Y");
+            headers.set("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDM1YjllZjRkNDljMDlkODI1OWMwNCIsImlhdCI6MTczMjQ2NzYxNCwiZXhwIjoxNzM1MDU5NjE0fQ.CUqVqB9iqG30HPU0MjJaIQXmq9YD0OOBN0ncEa2vngM");
             HttpEntity<String> entity = new HttpEntity<>(headers);
 
             // İstek gönderme
@@ -87,6 +85,7 @@ public class LoadTestMetricsService {
 
             if (response.getStatusCode().is2xxSuccessful()) {
                 successfulRequests.inc(); // Başarılı istek sayısını artır
+                System.out.println("Request succeded: "+response.getStatusCode());
                 return responseTime;
             } else {
                 failedRequests.inc(); // Başarısız istek sayısını artır
