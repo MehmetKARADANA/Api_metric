@@ -48,7 +48,7 @@ func init() {
 func performLoadTest() {
     const (
         numRequests = 1000 // Gönderilecek toplam istek sayısı
-        concurrency = 100  // Aynı anda kaç istek gönderilecek
+        concurrency = 1000  // Aynı anda kaç istek gönderilecek
         token       = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDM1YjllZjRkNDljMDlkODI1OWMwNCIsImlhdCI6MTczMjQ2NzYxNCwiZXhwIjoxNzM1MDU5NjE0fQ.CUqVqB9iqG30HPU0MjJaIQXmq9YD0OOBN0ncEa2vngM" // Token
     )
 

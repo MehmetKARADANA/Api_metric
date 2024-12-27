@@ -10,13 +10,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.*;
 
 public class LoadTestMetricsService {
 
     private static final int TOTAL_REQUESTS = 1000; // Toplam istek sayısı
-    private static final int THREAD_COUNT = 100; // Aynı anda gönderilecek istek sayısı
+    private static final int THREAD_COUNT = 1000; // Aynı anda gönderilecek istek sayısı
     private static final String URL = "http://localhost:8081/api/getRooms"; // Test etmek istediğiniz endpoint
+
 
     private static final RestTemplate restTemplate = new RestTemplate();
 
@@ -46,20 +49,15 @@ public class LoadTestMetricsService {
             .register();
 
     public static void main(String[] args) throws IOException {
-        // Prometheus HTTP Sunucusunu Başlatma
-      /*  HTTPServer prometheusServer = new HTTPServer(8085);
 
-        ExecutorService executor = Executors.newFixedThreadPool(THREAD_COUNT);*/
         HTTPServer prometheusServer = new HTTPServer(8085);
              ExecutorService executor = Executors.newFixedThreadPool(THREAD_COUNT);
-
             for (int i = 0; i < TOTAL_REQUESTS; i++) {
 
-                executor.submit(LoadTestMetricsService::sendRequestAndMeasureTime);
+              Future<?> future =   executor.submit(LoadTestMetricsService::sendRequestAndMeasureTime);
+
             }
-
             executor.shutdown();
-
     }
 
 
